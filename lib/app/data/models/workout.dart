@@ -16,12 +16,14 @@ class Workout {
 }
 
 class AudioPhrase {
-  final String audioPath;
+  final String audioPathEn;
+  final String audioPathJp;
   final String englishText;
   final String japaneseText;
 
   AudioPhrase({
-    required this.audioPath,
+    required this.audioPathEn,
+    required this.audioPathJp,
     required this.englishText,
     required this.japaneseText,
   });

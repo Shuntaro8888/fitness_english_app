@@ -13,29 +13,10 @@ class BodyPartSelectionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select Body Part'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: bodyParts.length,
-              itemBuilder: (context, index) {
-                final bodyPart = bodyParts[index];
-                return ListTile(
-                  title: Text(bodyPart),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WorkoutSelectionScreen(bodyPart: bodyPart),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-          ElevatedButton(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.format_quote),
+            tooltip: 'Show Quotes',
             onPressed: () {
               Navigator.push(
                 context,
@@ -44,7 +25,33 @@ class BodyPartSelectionScreen extends StatelessWidget {
                 ),
               );
             },
-            child: const Text('Show Quotes'),
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: bodyParts.length,
+              itemBuilder: (context, index) {
+                final bodyPart = bodyParts[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: ListTile(
+                    title: Text(bodyPart),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WorkoutSelectionScreen(bodyPart: bodyPart),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

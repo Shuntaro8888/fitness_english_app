@@ -20,16 +20,20 @@ class WorkoutSelectionScreen extends StatelessWidget {
         itemCount: workouts.length,
         itemBuilder: (context, index) {
           final workout = workouts[index];
-          return ListTile(
-            title: Text(workout.name),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WorkoutExecutionScreen(workout: workout),
-                ),
-              );
-            },
+          return Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: ListTile(
+              title: Text(workout.name),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WorkoutExecutionScreen(workout: workout),
+                  ),
+                );
+              },
+            ),
           );
         },
       ),

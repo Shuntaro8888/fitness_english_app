@@ -168,6 +168,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  google_fonts:
+    dependency: "direct main"
+    description:
+      name: google_fonts
+      sha256: df9763500dadba0155373e9cb44e202ce21bd9ed5de6bdbd05c5854e86839cb8
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.0"
   http:
     dependency: transitive
     description:
@@ -447,4 +455,4 @@ packages:
     version: "1.1.0"
 sdks:
   dart: ">=3.3.4 <4.0.0"
-  flutter: ">=3.19.0"
+  flutter: ">=3.19.2"
