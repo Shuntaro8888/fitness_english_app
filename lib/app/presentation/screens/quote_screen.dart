@@ -1,9 +1,11 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:fitness_english_app/app/data/dummy_data.dart';
 import 'package:fitness_english_app/app/data/models/quote.dart';
+import 'package:flutter/services.dart';
 
 class QuoteScreen extends StatefulWidget {
   const QuoteScreen({super.key});
@@ -21,7 +23,11 @@ class _QuoteScreenState extends State<QuoteScreen> {
     super.initState();
     _audioPlayer = AudioPlayer();
     _currentQuote = _getRandomQuote();
-    _playQuoteAudio(_currentQuote);
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        _playQuoteAudio(_currentQuote);
+      }
+    });
   }
 
   Quote _getRandomQuote() {
@@ -31,7 +37,8 @@ class _QuoteScreenState extends State<QuoteScreen> {
 
   void _playQuoteAudio(Quote quote) async {
     if (quote.audioPath.isNotEmpty) {
-      await _audioPlayer.play(AssetSource(quote.audioPath));
+      final byteData = await rootBundle.load(quote.audioPath);
+      await _audioPlayer.play(BytesSource(byteData.buffer.asUint8List()));
     }
   }
 
